@@ -10,7 +10,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Bueno - Food Blog HTML Template</title>
+    <title>Bueno - El blog de nuestros platos favoritos!</title>
 
     <!-- Favicon -->
     <link rel="icon" href="{% static 'img/core-img/favicon.ico' %}">
@@ -106,58 +106,10 @@
                             <!-- Nav Start -->
                             <div class="classynav">
                                 <ul>
-                                    <li><a href="index.html">Home</a></li>
+                                    <li><a href="{% url 'inicio' %}">Home</a></li>
                                     <li><a href="#">Acerca de nosotras</a></li>
-                                    <li><a href="#">Pages</a>
-                                        <ul class="dropdown">
-                                            <li><a href="index.html">Home</a></li>
-                                            <li><a href="catagory.html">Catagory</a></li>
-                                            <li><a href="catagory-post.html">Catagory Post</a></li>
-                                            <li><a href="single-post.html">Single Post</a></li>
-                                            <li><a href="receipe.html">Recipe</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Recipes</a>
-                                        <div class="megamenu">
-                                            <ul class="single-mega cn-col-4">
-                                                <li><a href="#">- Recipe</a></li>
-                                                <li><a href="#">- Bread</a></li>
-                                                <li><a href="#">- Breakfast</a></li>
-                                                <li><a href="#">- Meat</a></li>
-                                                <li><a href="#">- Fastfood</a></li>
-                                                <li><a href="#">- Salad</a></li>
-                                                <li><a href="#">- Soup</a></li>
-                                            </ul>
-                                            <ul class="single-mega cn-col-4">
-                                                <li><a href="#">- Recipe</a></li>
-                                                <li><a href="#">- Bread</a></li>
-                                                <li><a href="#">- Breakfast</a></li>
-                                                <li><a href="#">- Meat</a></li>
-                                                <li><a href="#">- Fastfood</a></li>
-                                                <li><a href="#">- Salad</a></li>
-                                                <li><a href="#">- Soup</a></li>
-                                            </ul>
-                                            <ul class="single-mega cn-col-4">
-                                                <li><a href="#">- Recipe</a></li>
-                                                <li><a href="#">- Bread</a></li>
-                                                <li><a href="#">- Breakfast</a></li>
-                                                <li><a href="#">- Meat</a></li>
-                                                <li><a href="#">- Fastfood</a></li>
-                                                <li><a href="#">- Salad</a></li>
-                                                <li><a href="#">- Soup</a></li>
-                                            </ul>
-                                            <ul class="single-mega cn-col-4">
-                                                <li><a href="#">- Recipe</a></li>
-                                                <li><a href="#">- Bread</a></li>
-                                                <li><a href="#">- Breakfast</a></li>
-                                                <li><a href="#">- Meat</a></li>
-                                                <li><a href="#">- Fastfood</a></li>
-                                                <li><a href="#">- Salad</a></li>
-                                                <li><a href="#">- Soup</a></li>
-                                            </ul>
-                                        </div>
-                                    </li>
+                                    <li><a href="{% url 'crearPost' %}">Crear Post</a></li>
+                                    <li><a href="{% url 'listaCategorias' %}">Categorías</a></li>
                                     <li><a href="single-post.html">Blog</a></li>
                                     <li><a href="contact.html">Contact</a></li>
                                 </ul>
@@ -175,6 +127,9 @@
             </div>
         </div>
     </header>
+
+    {% block post %}
+
     <!-- ##### Header Area End ##### -->
 
     <!-- ##### Treading Post Area Start ##### -->
@@ -426,6 +381,7 @@
     </div>
     <!-- ##### Catagory Area End ##### -->
 
+{% block lista_blogs %}
     <!-- ##### Big Posts Area Start ##### -->
     <div class="big-posts-area mb-50">
         <div class="container">
@@ -449,7 +405,7 @@
                     </div>
                 </div>
             </div>
-
+{% endblock %}
             <!-- Single Big Post Area -->
             <div class="row align-items-center">
                 <div class="col-12 col-md-6">
@@ -708,7 +664,7 @@
         </div>
     </div>
     <!-- ##### Instagram Area End ##### -->
-
+    {% endblock %}
     <!-- ##### Footer Area Start ##### -->
     <footer class="footer-area">
         <div class="container">

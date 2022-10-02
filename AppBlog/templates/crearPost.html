@@ -1,0 +1,29 @@
+{% extends 'padre.html' %}
+
+{% load static %}
+
+
+{% block post %}
+<section class="contact-area section-padding-100">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-8 col-xl-9">
+                <div class="contact-form-area mb-70">
+                    <h4 class="mb-50">Nuevo Post</h4>
+                    <div class="form-group">
+                        <form method="POST" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form.media }}
+                            {{ form.as_p }}
+                            <div class="col-12">
+                                <button class="btn bueno-btn mt-30" type="submit">Publicar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

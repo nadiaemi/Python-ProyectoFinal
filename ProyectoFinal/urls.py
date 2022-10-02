@@ -15,11 +15,20 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
+
 from AppBlog.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', inicio, name='inicio'),
+    path('', Home.as_view(), name='inicio'),
+    path('articulos/<int:pk>', Articulo.as_view(), name='articulo'),
+    path('crearPost/', CrearPost.as_view(), name='crearPost'),
+    path('articulos/editar/<int:pk>', EditarPost.as_view(), name='editarPost'),
+    path('articulos/<int:pk>/eliminar', EliminarPost.as_view(), name='eliminarPost'),
+    path('categorias/<str:opciones>/', VerCategoria, name='categoria'),
+    path('listaCategorias/', ListaCategoria, name='listaCategorias'),
 
 
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

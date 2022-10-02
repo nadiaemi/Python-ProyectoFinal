@@ -1,0 +1,37 @@
+{% extends 'padre.html' %}
+
+{% load static %}
+
+{% block post %}
+    <!-- ##### Big Posts Area Start ##### -->
+    {% for post in object_list %}
+    <div class="big-posts-area mb-50">
+        <div class="container">
+            <!-- Single Big Post Area -->
+            <div class="row align-items-center">
+                <div class="col-12 col-md-6">
+                    <div class="big-post-content text-center mb-50">
+                        <a href="{% url 'categoria' post.categoria %}" class="post-tag">{{ post.categoria }}</a>
+                        <a href="{% url 'articulo' post.pk %}" class="post-title">{{ post.titulo }}</a>
+                        <div class="post-meta">
+                            <span class="post-date">{{ post.fecha_post }}</span>
+                            <span class="post-author">By {{ post.autor.first_name }} {{ post.autor.last_name }}</span>
+                        </div>
+                        <div class="post-meta">
+                            <a href="{% url 'editarPost' post.pk %}" class="post-date">Editar</a>
+                            <a href="{% url 'eliminarPost' post.pk %}" class="post-author">Eliminar</a>
+                        </div>
+                        <p> {{ post.cuerpo|slice:':150'|safe }}</p>
+                        <a href="{% url 'articulo' post.pk %}" class="btn bueno-btn">Leer más</a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6">
+                    <div class="big-post-thumbnail mb-50">
+                        {% if post.imagen_post %}
+                            <img src="{{ post.imagen_post.url }}" alt="">
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+{% endblock %}
