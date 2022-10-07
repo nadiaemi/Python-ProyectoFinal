@@ -34,3 +34,4 @@ class EditarForm(forms.ModelForm):
             'cuerpo': forms.Textarea(attrs={'class': 'form-control'}),
            
         }
+        

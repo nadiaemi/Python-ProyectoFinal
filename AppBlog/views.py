@@ -5,6 +5,10 @@ from .models import Categoria, Post
 from .forms import PostForm, EditarForm
 from django.urls import reverse_lazy
 
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, logout, authenticate
+
+
 # Create your views here.
 
 #def inicio(request):
@@ -48,3 +52,22 @@ def VerCategoria(request, opciones):
 def ListaCategoria(request):
 	lista_categoria = Categoria.objects.all()
 	return render (request, 'listaCategorias.html', {'lista_categoria': lista_categoria})
+
+def login_request(request):
+	if request.method=="POST":
+		form=AuthenticationForm(request, data=request.POST)
+		if form.is_valid():
+			usu=request.POST["username"]
+			clave=request.POST["password"]
+
+			usuario=authenticate(username=usu, password=clave)
+			if usuario is not None:
+				login(request, usuario)
+				return render(request, "inicio.html", {"mensaje":f"Estamos felices {usuario} que hagas parte de nuestro Blog"})
+			else:
+				return render (request, "login.html", {"formulario":form, "mensaje":"Usuario o contraseña incorrectos"})
+		else:
+			return render (request, "login.html", {"formulario":form, "mensaje":"Usuario o contraseña incorrectos"})
+	else:
+		form=AuthenticationForm()
+		return render (request, "login.html", {"formulario":form})
