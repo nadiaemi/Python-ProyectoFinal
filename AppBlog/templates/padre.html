@@ -114,11 +114,23 @@
                                     <li><a href="contact.html">Contacto</a></li>
 
                                 </ul>
-
+                                {% if user.is_authenticated %}
+                                
+                                <!-- Login/Register -->                                
+                                
+                                <div class="login-area">
+                                    <a href="{% url 'logout' %}">Salir</a>
+                                </div>
+                                {% else %}
+                                <!-- Login/Register -->                                
+                                <div class="login-area">
+                                    <a href="{% url 'login' %}">Iniciar Sesión</a>
+                                </div>
                                 <!-- Login/Register -->
                                 <div class="login-area">
-                                    <a href="{% url 'login' %}">Login / Register</a>
+                                    <a href="{% url 'register' %}">Registrate</a>
                                 </div>
+                                {% endif %}
                             </div>
                             <!-- Nav End -->
 
