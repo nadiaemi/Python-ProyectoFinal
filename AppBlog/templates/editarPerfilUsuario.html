@@ -1,0 +1,41 @@
+{% extends "padre.html" %}
+
+{% load static %}
+    
+
+{% block post %}
+<section class="contact-area section-padding-200"></section>
+    <div class="container">
+<div class="col-12 col-md-100">
+
+<!-- Login/Register -->
+<div class="login-area">
+    <h2 href="#" class="post-tag">Editar Perfil de {{ usuario }}</h2>
+</div>
+
+<!-- Nav End -->
+
+<div class="col-12 col-md-6">
+    <div class="big-post-content text-center mb-10">
+
+        <div class="post-tag">
+            <a>Formulario de Edición</a>
+            <h1>{{ mensaje }}</h1>
+            <form action="{% url 'editarPerfilUsuario' %}" method="POST"> {% csrf_token %}
+
+                <table>
+                    {{ formulario.as_table }}
+                
+                </table>
+                <input type="submit" value="guardar">
+              
+            </form>
+        </div>
+    
+    </div>
+</div>
+{% endblock %}
+
+
+
+

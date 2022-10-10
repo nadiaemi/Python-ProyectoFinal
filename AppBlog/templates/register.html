@@ -1,0 +1,39 @@
+{% extends "padre.html" %}
+
+{% load static %}
+    
+
+{% block post %}
+
+<section class="contact-area section-padding-200"></section>
+    <div class="container">
+        
+<!-- Login/Register -->
+<div class="login-area">
+    <a href="#" class="post-tag">AHORA TE PODES REGISTRAR EN NUESTRO BLOG</a>
+</div>
+
+<!-- Nav End -->
+
+<div class="col-12 col-md-6">
+    <div class="big-post-content text-center mb-50">
+
+        <div class="login-area">
+            <form action="{% url 'register' %}" method="POST"> {% csrf_token %}
+
+                <table>
+                    {{ formulario.as_table }}
+                
+                </table>
+                <input type="submit" value="Registrate">
+              
+            </form>
+        </div>
+    
+    </div>
+</div>
+
+
+
+{{ mensaje }}
+{% endblock %}

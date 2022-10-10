@@ -1,0 +1,29 @@
+{% extends 'padre.html' %}
+
+{% load static %}
+
+{% block post %}
+    <div class="post-catagory section-padding-100">
+        <div class="container">
+            <div class="row">
+                <!-- Single Post Catagory -->
+                {% for item in lista_categoria %}
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="single-post-catagory mb-30">
+                        <img src="{% static 'img/bg-img/4.jpg' %}" alt="">
+                        <!-- Content -->
+                        <div class="catagory-content-bg">
+                            <div class="catagory-content">
+                                <a href="{% url 'categoria' item|slugify %}" class="post-tag">Lo mejor en:</a>
+                                <a href="{% url 'categoria' item %}" class="post-title">{{ item }}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+    
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

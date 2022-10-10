@@ -1,0 +1,19 @@
+{% extends "padre.html" %}
+
+{% load static %}
+    
+<h1 class="mb-5">Agregando Avatar de {{ usuario }}</h1>
+
+{% block post %}
+<section class="contact-area section-padding-200">
+    <div class="container">
+            <a class="blog-thumbnail">AGREGAR AVATAR</a>
+            <form action="{% url 'agregarAvatar' %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+
+                <table>
+                    {{ formulario.as_table }}
+                </table>
+                <button type="submit">AGREGAR AVATAR</button>
+            </form>
+{% endblock %}
+
