@@ -9,17 +9,25 @@
         <div class="row justify-content-center">
             <div class="col-12 col-lg-8 col-xl-9">
                 <div class="contact-form-area mb-70">
-                    <h4 class="mb-50">Editar Post</h4>
-                    <div class="form-group">
-                        <form method="POST" enctype="multipart/form-data">
-                            {% csrf_token %}
-                            {{ form.media }}
-                            {{ form.as_p }}
-                            <div class="col-12">
-                                <button class="btn bueno-btn mt-30" type="submit">Actualizar</button>
+                    {% if user.is_authenticated %}
+                        {% if user.id == post.autor.id %}
+                            <h4 class="mb-50">Editar Post</h4>
+                            <div class="form-group">
+                                <form method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    {{ form.media }}
+                                    {{ form.as_p }}
+                                    <div class="col-12">
+                                        <button class="btn bueno-btn mt-30" type="submit">Actualizar</button>
+                                    </div>
+                                </form>
                             </div>
-                        </form>
-                    </div>
+                        {% else %}
+                        <p>Por favor, inicia sesión!</p>
+                        {% endif %}
+                    {% else %}
+                        <p>Por favor, inicia sesión!</p>
+                    {% endif %}
                 </div>
             </div>
         </div>

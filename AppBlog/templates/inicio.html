@@ -3,6 +3,13 @@
 {% load static %}
 
 {% block post %}
+
+<div class="bueno-search-area section-padding-100-0 pb-70 bg-img" style="background-image: url({% static 'img/core-img/pattern.png' %});">
+    <div class="container">
+            <h1>¡Bienvenidos a nuestro blog!</h1>
+            <p>Te compartimos nuestras recetas favoritas y vos también podes compartir las tuyas!</p>                 
+    </div>
+</div>
     <!-- ##### Big Posts Area Start ##### -->
     {% for post in object_list %}
     <div class="big-posts-area mb-50">
@@ -14,12 +21,16 @@
                         <a href="{% url 'categoria' post.categoria %}" class="post-tag">{{ post.categoria }}</a>
                         <a href="{% url 'articulo' post.pk %}" class="post-title">{{ post.titulo }}</a>
                         <div class="post-meta">
-                            <span class="post-date">{{ post.fecha_post }}</span>
-                            <span class="post-author">By {{ post.autor.first_name }} {{ post.autor.last_name }}</span>
+                            <span class="post-date">{{ post.fecha_post }} | </span>
+                            <span class="post-author">By {{ post.autor.username }} {{ post.autor.first_name }} {{ post.autor.last_name }}</span>
                         </div>
                         <div class="post-meta">
-                            <a href="{% url 'editarPost' post.pk %}" class="post-date">Editar</a>
-                            <a href="{% url 'eliminarPost' post.pk %}" class="post-author">Eliminar</a>
+                            {% if user.is_authenticated %}
+                                {% if user.id == post.autor.id %}
+                                    <a href="{% url 'editarPost' post.pk %}" class="post-date">Editar</a>
+                                    <a href="{% url 'eliminarPost' post.pk %}" class="post-author">Eliminar</a>
+                                {% endif %}
+                            {% endif %}
                         </div>
                         <p> {{ post.cuerpo|slice:':150'|safe }}</p>
                         <a href="{% url 'articulo' post.pk %}" class="btn bueno-btn">Leer más</a>

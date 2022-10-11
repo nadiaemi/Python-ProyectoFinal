@@ -9,17 +9,24 @@
             <!-- Post Details Content Area -->
             <div class="col-12 col-lg-8 col-xl-9">
                 <div class="post-details-content mb-100">
-                    <div class="blog-content">
-                        <a href="#" class="post-tag">Eliminar:</a>
-                        <h4 class="post-title">{{ post.titulo }}</h4>
-                        <div class="post-meta mb-50">
-                            <form method="POST">
-                                {% csrf_token %}
-                                <button class="btn bueno-btn">Borrar Publicación</button>
-                            </form>
+                    {% if user.is_authenticated %}
+                        {%if user.id == post.autor.id %}
+                        <div class="blog-content">
+                            <a href="#" class="post-tag">Eliminar:</a>
+                            <h4 class="post-title">{{ post.titulo }}</h4>
+                            <div class="post-meta mb-50">
+                                <form method="POST">
+                                    {% csrf_token %}
+                                    <button class="btn bueno-btn">Borrar Publicación</button>
+                                </form>
+                            </div> 
                         </div>
-                
-                    </div>
+                        {% else %}
+                            <p>Por favor, inicia sesión!</p>
+                        {% endif %}
+                    {% else %}
+                        <p>Por favor, inicia sesión!</p>
+                    {% endif %}
                 </div>
             </div>
         </div>

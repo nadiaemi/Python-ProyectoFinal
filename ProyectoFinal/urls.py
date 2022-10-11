@@ -34,6 +34,7 @@ urlpatterns = [
     path('articulos/<int:pk>/eliminar', EliminarPost.as_view(), name='eliminarPost'),
     path('categorias/<str:opciones>/', VerCategoria, name='categoria'),
     path('listaCategorias/', ListaCategoria, name='listaCategorias'),
+    path('about/', About, name='about'),
 
     path('login/', login_request, name='login'),
     path('register/', register, name='register'),

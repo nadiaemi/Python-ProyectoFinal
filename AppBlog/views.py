@@ -56,6 +56,9 @@ def ListaCategoria(request):
 	lista_categoria = Categoria.objects.all()
 	return render (request, 'listaCategorias.html', {'lista_categoria': lista_categoria})
 
+def About(request):
+	return render (request, 'about.html')
+
 @login_required
 def inicio(request):
 	lista=Avatar.objects.filter(user=request.user)

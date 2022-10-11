@@ -20,12 +20,16 @@
                             <h4 class="post-title">{{ post.titulo }}</h4>
                             <p>{{ post.subtitulo }}</p>
                             <div class="post-meta mb-50">
-                                <span class="post-date">{{ post.fecha_post }}</span>
-                                <span class="post-author">By {{ post.autor.first_name }} {{ post.autor.last_name }}</span>
+                                <span class="post-date">{{ post.fecha_post }} | </span>
+                                <span class="post-author">By {{ post.autor.username }} {{ post.autor.first_name }} {{ post.autor.last_name }}</span>
                             </div>
                             <div class="post-meta mb-50">
-                                <a href="{% url 'editarPost' post.pk %}" class="post-date">Editar</a>
-                                <a href="{% url 'eliminarPost' post.pk %}" class="post-author">Eliminar</a>
+                                {% if user.is_authenticated %}
+                                    {% if user.id == post.autor.id %}
+                                        <a href="{% url 'editarPost' post.pk %}" class="post-date">Editar</a>
+                                        <a href="{% url 'eliminarPost' post.pk %}" class="post-author">Eliminar</a>
+                                    {% endif %}
+                                {% endif %}
                             </div>
                             <p>{{ post.cuerpo|safe }}</p>
                     
@@ -34,6 +38,5 @@
                 </div>
             </div>
         </div>
-    </section>
-    
+    </section>   
 {% endblock %}
