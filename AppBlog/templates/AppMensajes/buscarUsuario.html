@@ -1,0 +1,41 @@
+{% extends 'padre.html' %}
+
+{% load static %}
+
+{% block post %}
+
+
+ <!-- ##### Search Area Start ##### -->
+ <div class="bueno-search-area section-padding-100-0 pb-70 bg-img" style="background-image: url({% static 'img/core-img/pattern.png' %});">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <form action="#">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="form-group mb-30">
+                                <input type="text" name="q" id="" placeholder="Buscar usuarios" value="{{ request.GET.q }}">
+                            </div>
+                        </div>
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <div class="form-group mb-30">
+                                <button class="btn bueno-btn w-100" type="submit">Buscar</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% for user in users %}
+<div>
+    <strong>{{ user.username }}</strong>
+    <div class="col-12 col-sm-6 col-lg-3">
+        <a href="{% url 'newconversation' user.username %}" class="btn bueno-btn w-100">Enviar un mensaje</a>
+    </div>
+</div>
+{% endfor %}
+<!-- ##### Search Area End ##### -->
+
+{% endblock %}

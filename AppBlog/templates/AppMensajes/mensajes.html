@@ -1,0 +1,77 @@
+{% extends 'padre.html' %}
+
+{% load static %}
+
+{% block post %}
+
+<!-- Single Widget Area -->
+<div class="single-widget-area post-widget mb-30 container">
+    <h4>Últimas conversaciones</h4>
+    <!-- Single Post Area -->
+    {% for message in messages %}
+    <a class="{% if active_direct == message.user.username %}is-active{% endif %}" href="{% url 'directs' message.user.username %}">
+    <div class="single-post-area d-flex">
+        <!-- Blog Content -->
+        <div class="blog-content">
+            <a href="#" class="post-title">{{ message.user.username }}</a>
+        </div>
+        </a>
+    </div>
+    </a>
+    {% endfor %}
+
+    <button class="btn bueno-btn mt-30"><a href="{% url 'usersearch' %}">Nuevo Mensaje</a></button>
+</div>
+
+<!-- Comment Area Start -->
+
+<div class="comment_area clearfix mb-100 container">
+    <h4 class="mb-50">Mensajes</h4>
+
+    <ol>
+        {% for direct in directs %}
+        <!-- Single Comment Area -->
+        <li class="single_comment_area">
+            <!-- Comment Content -->
+            <div class="comment-content d-flex">
+                <!-- Comment Author -->
+                <div class="comment-author">
+                    <img src="{% static 'img/avatar-user-profile.png' %}" alt="author">
+                </div>
+                <!-- Comment Meta -->
+                <div class="comment-meta">
+                    <div class="d-flex">
+                        <a href="#" class="post-author">{{ direct.sender.username }}</a>
+                        <a href="#" class="post-date">{{ direct.date}}</a>
+                    </div>
+                    <p>{{ direct.body }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </li>
+    </ol>
+</div>
+
+<div class="post-a-comment-area mb-30 clearfix container">
+    <h4 class="mb-50">Deja tu mensaje</h4>
+
+    <!-- Reply Form -->
+    <div class="contact-form-area">
+        <form action="{% url 'send_direct' %}" method="POST" role="form">
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-12">
+                    <input type="hidden" name="to_user" value="{{ active_direct }}">
+                    <textarea name="body" class="form-control" id="message" cols="30" rows="10" placeholder="Escriba su mensaje"></textarea>
+                </div>
+                <div class="col-12">
+                    <button class="btn bueno-btn mt-30" type="submit" name="action">Enviar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+
+
+{% endblock %}
