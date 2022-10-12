@@ -22,7 +22,7 @@
                         <a href="{% url 'articulo' post.pk %}" class="post-title">{{ post.titulo }}</a>
                         <div class="post-meta">
                             <span class="post-date">{{ post.fecha_post }} | </span>
-                            <span class="post-author">By {{ post.autor.username }} {{ post.autor.first_name }} {{ post.autor.last_name }}</span>
+                            <span class="post-author">By {{ post.autor.username }} - {{ post.autor.first_name }} {{ post.autor.last_name }}</span>
                         </div>
                         <div class="post-meta">
                             {% if user.is_authenticated %}

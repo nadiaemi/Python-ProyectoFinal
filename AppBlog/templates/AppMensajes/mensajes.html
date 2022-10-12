@@ -7,6 +7,7 @@
 <!-- Single Widget Area -->
 <div class="single-widget-area post-widget mb-30 container">
     <h4>Últimas conversaciones</h4>
+    <h6>Selecciona una conversación o manda un nuevo mensaje:</h6>
     <!-- Single Post Area -->
     {% for message in messages %}
     <a class="{% if active_direct == message.user.username %}is-active{% endif %}" href="{% url 'directs' message.user.username %}">
@@ -41,7 +42,7 @@
                 <!-- Comment Meta -->
                 <div class="comment-meta">
                     <div class="d-flex">
-                        <a href="#" class="post-author">{{ direct.sender.username }}</a>
+                        <a href="#" class="post-author">{{ direct.sender.username }} - {{ direct.sender.first_name }} {{ direct.sender.last_name }}</a>
                         <a href="#" class="post-date">{{ direct.date}}</a>
                     </div>
                     <p>{{ direct.body }}</p>

@@ -50,7 +50,7 @@
         <!-- Navbar Area -->
         <div class="bueno-main-menu" id="sticker">
             <div class="classy-nav-container breakpoint-off">
-                <div class="container">
+                <div class="container-fluid">
                     <!-- Menu -->
                     <nav class="classy-navbar justify-content-between" id="buenoNav">
 
@@ -72,18 +72,25 @@
                                     <li><a href="{% url 'inbox' %}">Mensajes</a></li>
 
                                 </ul>
+
                                 {% if user.is_authenticated %}
                                
-                                <img src="{{ avatar }}" alt=""> 
-                                
-                                <!-- Login/Register -->                                
+                                <!-- Login/Register -->      
+                                <div class="login-area">
+                                    <span>¡Hola <strong>{{user.username}}</strong>!</span>     
+                                </div>                          
                                 
                                 <div class="login-area">
                                     <a href="{% url 'logout' %}">Salir</a>
+                                     
                                 </div>
                                 <div class="login-area">
                                     <a href="{% url 'editarPerfilUsuario' %}">Editar Perfil</a>
                                 </div>
+                                <div class="login-area">
+                                    <img src="{{ imagen }}" alt="" style="width: 50px">
+                                </div>
+
                                 {% else %}
                                 <!-- Login/Register -->                                
                                 <div class="login-area">
